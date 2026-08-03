@@ -1,0 +1,39 @@
+# Local simulation of the cloud control plane with isolated test storage.
+
+node: cloud
+timezone: UTC
+
+quiet_hours:
+  start: "21:00"
+  end: "08:00"
+
+discord:
+  token_env: DISCORD_BOT_TOKEN_TEST_UNSET
+  owner_user_id_env: DISCORD_OWNER_USER_ID
+  channel: inbox
+
+server:
+  port: 4949
+  host: 127.0.0.1
+  auth_token_env: HUB_ACCESS_TOKEN
+  worker_token_env: WORKER_TOKEN
+
+storage:
+  db_path: data/test-cloud.sqlite
+  transcripts_dir: data/test-transcripts
+  artifacts_dir: data/test-artifacts
+
+nag:
+  snooze_cap: 3
+  blocked_recheck_hours: 72
+  morning_brief: "08:00"
+  evening_reckoning: "20:30"
+
+runtimes:
+  - kind: api-openai
+    default: true
+
+coding:
+  projects_root: data/test-artifacts # ignored in remote mode; worker reports real list
+  allowed_projects: []
+  dex_mode: remote

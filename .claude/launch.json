@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "hub",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 4747
+    },
+    {
+      "name": "hub-test",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "set SEMBLEOPS_CONFIG=config/sembleops.test.yaml&& npm run dev"],
+      "port": 4949
+    }
+  ]
+}

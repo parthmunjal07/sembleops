@@ -1,0 +1,42 @@
+# Cloud control-plane config. Copy to config/sembleops.yaml on the cloud host.
+# Developer jobs queue for an outbound worker; API-backed agents run here.
+
+node: cloud
+
+timezone: UTC
+
+quiet_hours:
+  start: "21:00"
+  end: "08:00"
+
+discord:
+  token_env: DISCORD_BOT_TOKEN
+  owner_user_id_env: DISCORD_OWNER_USER_ID
+  channel: inbox
+
+server:
+  port: 4747
+  host: 0.0.0.0 # container/VPS binding; put HTTPS in front (Caddy, Fly, etc.)
+  auth_token_env: HUB_ACCESS_TOKEN # REQUIRED in cloud: set a long random value
+  worker_token_env: WORKER_TOKEN # shared secret with the outbound worker
+
+storage:
+  db_path: data/sembleops.sqlite # mount a persistent volume at ./data
+  transcripts_dir: data/transcripts
+  artifacts_dir: data/artifacts
+
+nag:
+  snooze_cap: 3
+  blocked_recheck_hours: 72
+  morning_brief: "08:00"
+  evening_reckoning: "20:30"
+
+runtimes:
+  # API-backed agents run here. Developer jobs remain on the remote worker.
+  - kind: api-openai
+    default: true
+
+coding:
+  projects_root: /projects # unused in remote mode but must exist; see Dockerfile
+  allowed_projects: [] # the remote worker has its own explicit environment allowlist
+  dex_mode: remote

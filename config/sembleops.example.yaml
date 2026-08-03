@@ -1,0 +1,42 @@
+# SembleOps local config - copy to sembleops.yaml (gitignored) and adjust.
+
+node: local
+
+timezone: UTC # use an IANA timezone; all storage remains UTC
+
+quiet_hours:
+  start: "21:00"
+  end: "08:00"
+  # No emergency override exists in v1.
+
+discord:
+  # Secrets come from .env — config only names which env vars to read.
+  token_env: DISCORD_BOT_TOKEN
+  owner_user_id_env: DISCORD_OWNER_USER_ID
+  channel: inbox # text channel in the private server the bot treats as #inbox
+
+server:
+  port: 4747 # local web UI + API (http://localhost:4747)
+
+coding:
+  # Agent jobs can access only these exact, real child directories. Symlinks
+  # and junctions are rejected. An empty list disables project execution.
+  projects_root: /absolute/path/to/your/projects
+  allowed_projects:
+    - example-project
+
+storage:
+  db_path: data/sembleops.sqlite
+  transcripts_dir: data/transcripts
+  artifacts_dir: data/artifacts
+
+nag:
+  snooze_cap: 3 # after this → forced decision flow
+  blocked_recheck_hours: 72
+  morning_brief: "08:00"
+  evening_reckoning: "20:30"
+
+runtimes:
+  # Choose an installed CLI runtime or the API-backed runtime.
+  - kind: codex # claude-code | codex | api-openai
+    default: true

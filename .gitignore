@@ -1,0 +1,26 @@
+# dependencies / build
+node_modules/
+dist/
+dist-ui/
+
+# runtime data — never committed (hard wall: task data, sessions, logs stay on the node)
+data/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+
+# secrets
+.env
+.env.*
+!.env.example
+
+# local node config (contains connector details); example stays tracked
+config/sembleops.yaml
+fly.toml
+
+# misc
+*.log
+.DS_Store
+
+# design-iteration scratch screenshots
+work/

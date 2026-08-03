@@ -1,0 +1,14 @@
+SembleOps
+Copyright 2026 SembleOps contributors
+
+This product is licensed under the Apache License, Version 2.0. Unless a file
+or directory carries a different notice, that license covers the source code,
+documentation, and configuration examples distributed in this repository.
+
+Third-party packages, command-line tools, hosted services, fonts, trademarks,
+and other dependencies retain their own licenses and terms. Their inclusion,
+mention, or interoperability does not imply that their owners endorse this
+project. Package-specific license information is available from the relevant
+package metadata and upstream project.
+
+The Apache License does not grant trademark rights. See TRADEMARKS.md.
